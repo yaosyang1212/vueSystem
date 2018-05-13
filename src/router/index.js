@@ -10,6 +10,7 @@ import welcome from '@/components/welcome'
 import users from '@/components/user/users'
 import rights from '@/components/power/rights'
 import roles from '@/components/power/roles'
+import categories from '@/components/goods/categories'
 
 Vue.use(Router)
 export default new Router({
@@ -32,7 +33,8 @@ export default new Router({
         { path: '/welcome', component: welcome },
         { path: '/users', component: users },
         { path: '/rights', component: rights },
-        { path: '/roles', component: roles }
+        { path: '/roles', component: roles },
+        { path: '/categories', component: categories }
       ]
     }
   ]

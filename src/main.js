@@ -7,9 +7,13 @@ import './assets/css/global.css'
 import './assets/fonts/iconfont.css'
 // 导入axios
 import axios from 'axios'
+// 导入第三方库树形结构
+import TreeGrid from 'vue-table-with-tree-grid'
 // 导入element
 import ElementUI from 'element-ui'
 Vue.use(ElementUI)
+// 把 树形表格，注册为全局的组件
+Vue.component('tree-grid', TreeGrid)
 // 添加路由导航守卫，只有登录的情况下才可以访问有权限的页面，否则跳转到登录页面
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') return next()
