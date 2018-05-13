@@ -32,7 +32,11 @@ export default {
         mobile: ''
       },
       // 分配角色表单对象
-      setRoleForm: {},
+      setRoleForm: {
+        newRoleId: ''
+      },
+      // 所有角色下拉框的数据
+      roles: [],
       // 添加用戶表單規則
       addUserFormRules: {
         username: [{ required: true, message: '请输入用户名', trigger: 'blur' }, { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' }],
@@ -160,9 +164,23 @@ export default {
       if (res.meta.status !== 200) return this.$message.error('获取用户信息失败')
       // 获取成功后，显示对话框
       this.setRoleDialogVisible = true
-      this
+      // console.log(res)
+      // 显示对应的信息在表单上
+      this.setRoleForm.username = res.data.username
+      this.setRoleForm.id = res.data.id
+      this.setRoleForm.role_name = scope.row.role_name
+      // 获取所有角色名称
+      const { data: roles } = await this.$http.get('roles')
+      if (roles.meta.status !== 200) return this.$message.error('获取数据失败')
+      this.roles = roles.data
     },
     // 点击确定，分配权限成功
-    setNewRole () {}
+    async setNewRole () {
+      const { data: res } = await this.$http.put(`users/${this.setRoleForm.id}/role`, { rid: this.setRoleForm.newRoleId })
+      if (res.meta.status !== 200) return this.$message.error('分配权限失败')
+      this.$message.success('分配权限成功！')
+      this.getUserList()
+      this.setRoleDialogVisible = false
+    }
   }
 }

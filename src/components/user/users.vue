@@ -140,28 +140,28 @@
         title="分配角色"
         :visible.sync="setRoleDialogVisible"
         width="50%">
-          <!-- Start：分配角色 -->
-        <el-form ref="setRoleFormRef" :model="setRoleForm" label-width="100px">
-          <el-form-item label="当前的用户：">
-            <span>{{setRoleForm.username}}</span>
-          </el-form-item>
+        <!-- 分配角色表单 B -->
+        <el-form :model="setRoleForm" ref="setRoleFormRef" label-width="100px">
+            <el-form-item label="当前的用户:">
+              <span>{{setRoleForm.username}}</span>
+            </el-form-item>
 
-          <el-form-item label="当前的角色：">
-            <span>{{setRoleForm.role_name}}</span>
-          </el-form-item>
+            <el-form-item label="当前的角色:">
+              <span>{{setRoleForm.role_name}}</span>
+            </el-form-item>
 
-          <el-form-item label="分配新角色：">
-            <el-select v-model="setRoleForm.newRoleId" placeholder="请选择">
-              <el-option
-                v-for="item in roles"
-                :key="item.id"
-                :label="item.roleName"
-                :value="item.id">
-              </el-option>
-            </el-select>
-          </el-form-item>
+            <el-form-item label="分配的新角色:">
+              <el-select v-model="setRoleForm.newRoleId" placeholder="请选择">
+                <el-option
+                  v-for="item in roles"
+                  :key="item.id"
+                  :label="item.roleName"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-form-item>
         </el-form>
-        <!-- Ended：分配角色 -->
+        <!-- 分配角色表单 E -->
         <span slot="footer" class="dialog-footer">
           <el-button @click="setRoleDialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="setNewRole">确 定</el-button>
