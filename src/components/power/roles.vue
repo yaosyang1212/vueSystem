@@ -8,6 +8,7 @@
     </el-breadcrumb>
 
     <el-card>
+      <el-button type="primary">添加角色</el-button>
         <el-table
             :data="rolesList"
             border
