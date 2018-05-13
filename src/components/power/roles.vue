@@ -58,11 +58,34 @@
               <template slot-scope='scope'>
                 <el-button type="primary" icon="el-icon-edit" size='mini'>编辑</el-button>
                 <el-button type="danger" icon="el-icon-delete" size='mini'>删除</el-button>
-                <el-button type="warning" icon="el-icon-setting" size='mini'>分配权限</el-button>
+                <el-button type="warning" icon="el-icon-setting" size='mini' @click='showSetRoleDialog(scope)'>分配权限</el-button>
               </template>
             </el-table-column>
         </el-table>
     </el-card>
+
+    <!-- 分配权限段画框 -->
+    <el-dialog
+      title="分配权限"
+      :visible.sync="setRoleDialogVisible"
+      width="50%"
+      @close="setRoleDialogClosed">
+      <!-- 属性结构 -->
+      <el-tree
+        ref='tree'
+        :props="treeProps"
+        :data="treeData"
+        :default-expand-all="true"
+        :default-checked-keys="defaultCheckedKeys"
+        node-key='id'
+        show-checkbox>
+      </el-tree>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveRights">确 定</el-button>
+      </span>
+    </el-dialog>
+
  </div>
 </template>
 
